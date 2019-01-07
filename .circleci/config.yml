@@ -6,11 +6,11 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo "Updating environment"
-      - run: npm install -g typescript
-      - run: npm install -g eslint
-      - run: npm install -g eslint-plugin-import
-      - run: npm install -g eslint-config-airbnb-base
-      - run: npm install -g typescript-eslint-parser
+      - run: sudo npm install -g typescript
+      - run: sudo npm install -g eslint
+      - run: sudo npm install -g eslint-plugin-import
+      - run: sudo npm install -g eslint-config-airbnb-base
+      - run: sudo npm install -g typescript-eslint-parser
       - run: echo "Running application"
       - run: npm run build-ts
       - run: npm start
