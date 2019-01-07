@@ -5,16 +5,12 @@ jobs:
       - image: circleci/node:10.15.0-jessie # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
-      - run:
-        name: Updating environment
-        command: |
-          npm install -g typescript
-          npm install -g eslint
-          npm install -g eslint-plugin-import
-          npm install -g eslint-config-airbnb-base
-          npm install -g typescript-eslint-parser
-      - run:
-        name: Running application
-        command: |
-          npm run build-ts
-          npm start
+      - run: echo "Updating environment"
+      - run: npm install -g typescript
+      - run: npm install -g eslint
+      - run: npm install -g eslint-plugin-import
+      - run: npm install -g eslint-config-airbnb-base
+      - run: npm install -g typescript-eslint-parser
+      - run: echo "Running application"
+      - run: npm run build-ts
+      - run: npm start
