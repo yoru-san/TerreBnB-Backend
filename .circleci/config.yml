@@ -7,11 +7,11 @@ jobs:
       - checkout # check out the code in the project directory
       - run:
           name: Installing node environment
-          command: sudo npm install -g typescript
-      - run: sudo npm install -g eslint
-      - run: sudo npm install -g eslint-plugin-import
-      - run: sudo npm install -g eslint-config-airbnb-base
-      - run: sudo npm install -g typescript-eslint-parser
+          command: sudo npm install -g typescript |
+            sudo npm install -g eslint |
+            sudo npm install -g eslint-plugin-import |
+            sudo npm install -g eslint-config-airbnb-base |
+            sudo npm install -g typescript-eslint-parser
       - run:
           name: Installing app package dependencies
           command: npm install
