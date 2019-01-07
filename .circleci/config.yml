@@ -1,0 +1,20 @@
+version: 0
+jobs:
+  build:
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:10.15.0-jessie # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run:
+        name: Updating environment
+        command: |
+          npm install -g typescript
+          npm install -g eslint
+          npm install -g eslint-plugin-import
+          npm install -g eslint-config-airbnb-base
+          npm install -g typescript-eslint-parser
+      - run:
+        name: Running application
+        command: |
+          npm run build-ts
+          npm start
