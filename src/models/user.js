@@ -8,3 +8,4 @@ exports.User = mongoose.model('User', {
     country: { type: String, required: true },
     zipcode: { type: String, required: true }
 });
+
