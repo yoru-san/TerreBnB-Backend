@@ -1,33 +1,17 @@
 {
-  "name": "TerreBnB-Backend",
+  "name": "terrebnb-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build-ts": "tsc",
-    "start": "npm run serve",
-    "serve": "node dist/index.js",
-    "watch-node": "nodemon dist/index.js",
-    "watch-ts": "tsc -w"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yoru-san/TerreBnB-Backend.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yoru-san/TerreBnB-Backend/issues"
-  },
-  "homepage": "https://github.com/yoru-san/TerreBnB-Backend#readme",
-  "devDependencies": {
-    "nodemon": "^1.18.9",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
-  },
   "dependencies": {
-    "@types/node": "^10.12.18",
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^4.13.18"
   }
 }
