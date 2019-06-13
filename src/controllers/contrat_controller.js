@@ -1,20 +1,19 @@
-const Property = require("../models/property");
+const Contrat = require("../models/contrat");
 
-exports.showProperty = (req, res) => {
-    Property.findById(req.params.id).then(data => {
+exports.showContratsOfUser = (req, res) => {
+    Contrat.find({ $or: [{ owner: req.params.id }, { tenant: req.params.id }] }).then(data => {
         res.json(data);
     });
 }
 
-exports.showPropertiesOfUser = (req, res) => {
-    var userId = req.params.id;
-    Property.find({ id_owner: userId }).then(data => {
+exports.showContrat = (req, res) => {
+    Contrat.findById(req.params.id).then(data => {
         res.json(data);
     });
 }
 
-exports.createProperty = (req, res) => {
-    var propertyParams = req.body;
+exports.createContrat = (req, res) => {
+    var contratParams = req.body;
     var start_dt = datetime.create(contratParams.end_date);
     var end_dt = datetime.create(contratParams.end_date);
     var formatted_start_date = start_dt.format('d/m/Y');
