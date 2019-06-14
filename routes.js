@@ -21,8 +21,11 @@ exports.init = (app) => {
     app.get('/api/properties/user/:id', (req, res) => {
         property_controller.showPropertiesOfUser(req, res);
     });
-    app.get('/api/property/property/:id', (req, res) => {
+    app.get('/api/properties/property/:id', (req, res) => {
         property_controller.showProperty(req, res);
+    });
+    app.post('/api/property/create', (req, res) => {
+        property_controller.createProperty(req, res);
     });
 }
 
