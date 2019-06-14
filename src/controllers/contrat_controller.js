@@ -20,12 +20,12 @@ exports.createContrat = (req, res) => {
     var formatted_end_date = end_dt.format('d/m/Y');
 
     var contrat = new Contrat
-    routine.tenant = contratParams.tenant;
-    routine.tenant = contratParams.owner;
-    routine.tenant = contratParams.property;
-    routine.tenant = formatted_start_date;
-    routine.tenant = formatted_end_date;
-    routine.tenant = contratParams.travelers;
+    contrat.tenant = contratParams.tenant;
+    contrat.owner = contratParams.owner;
+    contrat.property = contratParams.property;
+    contrat.start_date = formatted_start_date;
+    contrat.end_date = formatted_end_date;
+    contrat.travelers = contratParams.travelers;
 
     contrat.save().then(data => {
         res.json(data);

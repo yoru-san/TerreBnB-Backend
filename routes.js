@@ -7,7 +7,7 @@ exports.init = (app) => {
         user_controller.login(req, res);
     });
     app.post('/api/user/authenticate', (req, res) => {
-        user_controller.authenticate(req, res);
+        user_controller.createUser(req, res);
     });
     app.get('/api/user/profile/:id', (req, res) => {
         user_controller.showProfile(req, res);

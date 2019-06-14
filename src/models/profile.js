@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 
-exports.Profile = mongoose.model('Profile', { 
-    email: { type: String, required: true },  
+const schema = new mongoose.Schema({
+    email: { type: String, required: true },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
 });
+
+module.exports = mongoose.model('Profile', schema);
+
+//Exemple schéma JSON 
+//Voir User model 

@@ -15,20 +15,22 @@ exports.showPropertiesOfUser = (req, res) => {
 
 exports.createProperty = (req, res) => {
     var propertyParams = req.body;
-    var start_dt = datetime.create(contratParams.end_date);
-    var end_dt = datetime.create(contratParams.end_date);
-    var formatted_start_date = start_dt.format('d/m/Y');
-    var formatted_end_date = end_dt.format('d/m/Y');
 
-    var contrat = new Contrat
-    routine.tenant = contratParams.tenant;
-    routine.tenant = contratParams.owner;
-    routine.tenant = contratParams.property;
-    routine.tenant = formatted_start_date;
-    routine.tenant = formatted_end_date;
-    routine.tenant = contratParams.travelers;
+    var property = new Property
+    property.owner = propertyParams.owner;
+    property.title = propertyParams.title;
+    property.description = propertyParams.description;
+    property.adress = propertyParams.adress;
+    property.country = propertyParams.country;
+    property.zipcode = propertyParams.property;
+    property.surface = formatted_start_date;
+    property.n_rooms = formatted_end_date;
+    property.travelers_limit = propertyParams.travelers;
+    propertyParams.components.forEach(c => {
+        property.components.push(c);
+    });
 
-    contrat.save().then(data => {
+    property.save().then(data => {
         res.json(data);
     })
 }
