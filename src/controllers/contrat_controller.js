@@ -1,4 +1,6 @@
 const Contrat = require("../models/contrat");
+var datetime = require('node-datetime');
+
 
 exports.showContratsOfUser = (req, res) => {
     Contrat.find({ $or: [{ owner: req.params.id }, { tenant: req.params.id }] }).then(data => {
@@ -7,25 +9,31 @@ exports.showContratsOfUser = (req, res) => {
 }
 
 exports.showContrat = (req, res) => {
-    Contrat.findById(req.params.id).then(data => {
-        res.json(data);
-    });
+    Contrat.findById(req.params.id)
+        .populate('tenant')
+        .populate('owner')
+        .populate('property')
+        .populate('travelers')
+        .then(data => {
+            res.json(data);
+        });
 }
 
 exports.createContrat = (req, res) => {
     var contratParams = req.body;
-    var start_dt = datetime.create(contratParams.end_date);
-    var end_dt = datetime.create(contratParams.end_date);
-    var formatted_start_date = start_dt.format('d/m/Y');
-    var formatted_end_date = end_dt.format('d/m/Y');
 
     var contrat = new Contrat
     contrat.tenant = contratParams.tenant;
     contrat.owner = contratParams.owner;
     contrat.property = contratParams.property;
-    contrat.start_date = formatted_start_date;
-    contrat.end_date = formatted_end_date;
-    contrat.travelers = contratParams.travelers;
+    contrat.start_date = new Date(contratParams.start_date);
+    contrat.end_date = new Date(contratParams.end_date);
+
+    if (contratParams.travelers != null && contratParams.travelers.length > 0) {
+        contratParams.travelers.forEach(c => {
+            contrat.travelers.push(c);
+        });
+    }
 
     contrat.save().then(data => {
         res.json(data);

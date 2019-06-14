@@ -15,7 +15,10 @@ exports.init = (app) => {
     app.get('/api/contrats/user/:id', (req, res) => {
         contrat_controller.showContratsOfUser(req, res);
     });
-    app.get('/api/user/contrat/:id', (req, res) => {
+    app.post('/api/contrat/create', (req, res) => {
+        contrat_controller.createContrat(req, res);
+    });
+    app.get('/api/contrat/:id', (req, res) => {
         contrat_controller.showContrat(req, res);
     });
     app.get('/api/properties/user/:id', (req, res) => {
