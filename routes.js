@@ -30,5 +30,11 @@ exports.init = (app) => {
     app.post('/api/property/create', (req, res) => {
         property_controller.createProperty(req, res);
     });
+    app.post('/api/property/component/create', (req, res) => {
+        property_controller.createComponent(req, res);
+    });
+    app.get('/api/property/components', (req, res) => {
+        property_controller.getComponents(req, res);
+    });
 }
 

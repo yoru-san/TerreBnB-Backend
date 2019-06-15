@@ -1,4 +1,5 @@
 const Property = require("../models/property");
+const Component = require("../models/component");
 
 exports.showProperty = (req, res) => {
     Property.findById(req.params.id).populate('owner').then(data => {
@@ -33,5 +34,23 @@ exports.createProperty = (req, res) => {
 
     property.save().then(data => {
         res.json(data);
-    })
+    });
+}
+
+exports.getComponents = (_, res) => {
+    Component.find().then(data => {
+        res.json(data);
+    });
+}
+
+exports.createComponent = (req, res) => {
+    var componentParams = req.body;
+
+    var component = new Component
+    component.title = componentParams.title;
+    component.slug = componentParams.slug;
+
+    component.save().then(data => {
+        res.json(data);
+    });
 }

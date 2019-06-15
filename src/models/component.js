@@ -1,7 +1,8 @@
-const ObjectId = require('mongoose').Schema.Types.ObjectId;
 const mongoose = require('mongoose');
 
-exports.Component = mongoose.model('Component', {
+const schema = new mongoose.Schema({
     title: { type: String, required: true },
     slug: { type: String, required: true }
 });
+
+module.exports = mongoose.model('Component', schema);
