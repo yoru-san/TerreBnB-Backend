@@ -3,7 +3,7 @@ var property_controller = require('./src/controllers/property_controller');
 var contrat_controller = require('./src/controllers/contrat_controller');
 
 exports.init = (app) => {
-    app.post('/api/user/login', (req, res) => {
+    app.get('/api/user/login', (req, res) => {
         user_controller.login(req, res);
     });
     app.post('/api/user/authenticate', (req, res) => {
@@ -35,6 +35,12 @@ exports.init = (app) => {
     });
     app.get('/api/property/components', (req, res) => {
         property_controller.getComponents(req, res);
+    });
+    app.get('/api/property/comment/:id', (req, res) => {
+        property_controller.getCommentOfProperty(req, res);
+    });
+    app.post('/api/property/comment/create', (req, res) => {
+        property_controller.addCommentToProperty(req, res);
     });
 }
 

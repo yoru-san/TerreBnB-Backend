@@ -1,5 +1,7 @@
 const Property = require("../models/property");
 const Component = require("../models/component");
+const Comment = require("../models/comment");
+const Contrat = require("../models/contrat");
 
 exports.showProperty = (req, res) => {
     Property.findById(req.params.id).populate('owner').then(data => {
@@ -53,4 +55,35 @@ exports.createComponent = (req, res) => {
     component.save().then(data => {
         res.json(data);
     });
+}
+
+exports.addCommentToProperty = (req, res) => {
+    var commentParams = req.body;
+
+    Contrat.find({ $and: [{ tenant: commentParams.author }, { property: commentParams.target }] }).then(data => {
+        var contrat = data[0];
+        if (contrat.end_date >= new Date("2019-10-12")) {
+            res.status(500).send("Impossible d'écrire un commentaire avant la fin du contrat de location.");
+            return;
+        } else {
+            var comment = new Comment
+            comment.author = commentParams.author;
+            comment.target = commentParams.target;
+            comment.grade = commentParams.grade;
+            comment.opinion = commentParams.opinion;
+
+            comment.save().then(data => {
+                res.json(data);
+            });
+        }
+    });
+}
+
+exports.getCommentOfProperty = (req, res) => {
+    Comment.find({ target: req.params.id })
+        .populate('author')
+        .populate({ path: 'target', populate: { path: 'owner' } })
+        .then(data => {
+            res.json(data);
+        });
 }

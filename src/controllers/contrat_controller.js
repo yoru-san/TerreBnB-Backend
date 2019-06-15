@@ -1,6 +1,4 @@
 const Contrat = require("../models/contrat");
-var datetime = require('node-datetime');
-
 
 exports.showContratsOfUser = (req, res) => {
     Contrat.find({ $or: [{ owner: req.params.id }, { tenant: req.params.id }] }).then(data => {
